@@ -1,11 +1,11 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
+import { config as dotenv } from 'dotenv';
 
 import indexRouter from './routes/index.routes';
 import territorialRouter from './routes/territorial.routes';
 import personasRouter from './routes/persona.routes';
 
-import { config as dotenv } from 'dotenv';
 
 export class App {
 

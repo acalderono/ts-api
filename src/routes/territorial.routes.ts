@@ -6,13 +6,13 @@ import { getRegiones, getComunas, getComuna, getRegion } from '../controllers/te
 app.route('/regiones')
     .get(getRegiones)
 
-app.route('/regiones/:regionId')
+app.route('/regiones/:id')
     .get(getRegion)
 
 app.route('/comunas')
     .get(getComunas);
 
-app.route('/comunas/:comunaId')
+app.route('/comunas/:id')
     .get(getComuna)
 
 export default app;
