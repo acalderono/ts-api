@@ -3,26 +3,48 @@ import { connect } from '../database';
 
 export async function getRegiones(req: Request, res: Response): Promise<Response> {
     const conn = await connect();
-    const regiones = await conn.query(`select * from region`);
-    return res.status(200).json(regiones[0]);
+    return await conn.query(`select * from region`)
+        .then((data) => {
+            return res.status(200).json(data[0]);
+        }).catch((err) => {
+            return res.status(500).send({ status: 500, code: err.code, message: err.message })
+        })
 }
 
 export async function getRegion(req: Request, res: Response): Promise<Response> {
+    if (!req.params.id) {
+        return res.status(400).send('Se necesita el id!');
+    }
     const conn = await connect();
-    const region = await conn.query('select * from region where id_region = ?', [req.params.id]);
-
-    return res.status(200).json(region[0]);
+    return await conn.query('select * from region where id_region = ?', [req.params.id])
+        .then((data) => {
+            return res.status(200).json(data[0]);
+        })
+        .catch((err) => {
+            return res.status(500).send({ status: 500, code: err.code, message: err.message })
+        });
 }
 
 export async function getComunas(req: Request, res: Response): Promise<Response> {
     const conn = await connect();
-    const comunas = await conn.query(`select * from comuna`);
-
-    return res.status(200).json(comunas[0]);
+    return await conn.query(`select * from comuna`).then((data) => {
+        return res.status(200).json(data[0]);
+    })
+        .catch((err) => {
+            return res.status(500).send({ status: 500, code: err.code, message: err.message })
+        });
 }
 
 export async function getComuna(req: Request, res: Response): Promise<Response> {
+    if (!req.params.id) {
+        return res.status(400).send('Se necesita el id!');
+    }
     const conn = await connect();
-    const comuna = await conn.query(`select * WHERE id_comuna = ?`, [req.params.id]);
-    return res.status(200).json(comuna[0]);
+    return await conn.query(`select * from comuna WHERE id_comuna = ?`, [req.params.id])
+        .then((data) => {
+            return res.status(200).json(data[0]);
+        })
+        .catch((err) => {
+            return res.status(500).send({ status: 500, code: err.code, message: err.message })
+        });
 }
