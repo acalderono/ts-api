@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
+import compression from "compression";
 import { config as dotenv } from 'dotenv';
 
 import indexRouter from './routes/index.routes';
@@ -23,6 +24,7 @@ export class App {
     }
 
     middleware() {
+        this._app.use(compression());
         this._app.use(morgan('dev'));
     }
 
