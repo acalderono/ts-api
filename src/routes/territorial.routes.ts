@@ -1,18 +1,21 @@
 import { Router } from 'express';
 const app = Router();
 
-import { getRegiones, getComunas, getComuna, getRegion } from '../controllers/territorial.controller';
+import { getRegiones, getRegion, getComunaOfRegion } from '../controllers/territorial.controller';
 
-app.route('/regiones')
+app.route('/regiones/all')
     .get(getRegiones)
 
 app.route('/regiones/:id')
-    .get(getRegion)
+    .get(getRegion);
 
-app.route('/comunas')
-    .get(getComunas);
+app.route('/regiones/:id/comunas')
+    .get(getComunaOfRegion);
 
-app.route('/comunas/:id')
-    .get(getComuna)
+// app.route('/comunas')
+//     .get(getComunas);
+
+// app.route('/comunas/:id')
+//     .get(getComuna)
 
 export default app;
