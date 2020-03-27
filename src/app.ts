@@ -2,11 +2,7 @@ import express, { Application } from 'express';
 import morgan from 'morgan';
 import compression from "compression";
 import { config as dotenv } from 'dotenv';
-
-import indexRouter from './routes/index.routes';
-import territorialRouter from './routes/territorial.routes';
-import personasRouter from './routes/persona.routes';
-
+import { TerritorialRouter } from './router/territorial.routes';
 
 export class App {
 
@@ -29,9 +25,7 @@ export class App {
     }
 
     routes() {
-        this._app.use('/', indexRouter);
-        this._app.use('/api', territorialRouter);
-        this._app.use('/api', personasRouter);
+        this._app.use('/api', new TerritorialRouter().router);
     }
 
     async listen() {
