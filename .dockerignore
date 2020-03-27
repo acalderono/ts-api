@@ -1,0 +1,11 @@
+.git/
+node_modules/
+.vscode/
+.gitignore
+Dockerfile.*
+package-lock.json
+src/
+.env
+tsconfig.json
+webpack.*
+README.md
