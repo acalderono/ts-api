@@ -1,6 +1,7 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const nodemonPlugin = require('nodemon-webpack-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 module.exports = {
     entry: './src/index.ts',
@@ -24,6 +25,7 @@ module.exports = {
     },
     externals: [ nodeExternals() ],
     plugins: [
-        new nodemonPlugin()
+        new nodemonPlugin(),
+        new MomentLocalesPlugin()
     ]
 }

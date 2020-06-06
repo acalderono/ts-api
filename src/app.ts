@@ -2,7 +2,9 @@ import express, { Application } from 'express';
 import morgan from 'morgan';
 import compression from "compression";
 import { config as dotenv } from 'dotenv';
-import { TerritorialRouter } from './router/territorial.routes';
+import { TaskRouter } from './router/task.routes';
+import moment from 'moment';
+
 
 export class App {
 
@@ -13,6 +15,7 @@ export class App {
         this.middleware();
         this.routes();
         dotenv();
+        moment.locale('es');
     }
 
     settings() {
@@ -25,7 +28,8 @@ export class App {
     }
 
     routes() {
-        this._app.use('/api', new TerritorialRouter().router);
+        // this._app.use('/api', new TerritorialRouter().router);
+        this._app.use('/api', new TaskRouter().router)
     }
 
     async listen() {

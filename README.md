@@ -9,6 +9,21 @@ npm install
 npm start:dev
 ```
 
+### Endpoint
+
+Los endpoint disponibles son:
+
+```sh
+# id_user=5&id_team=7
+/api//usuarios
+# year=2019&week=12
+/api//usuarios/:id
+# year=2019&week=12,13
+/api/team/:id
+# year=2019&week=12
+/api/projects/:id
+```
+
 ## Environment
 
 Ejemplo:
